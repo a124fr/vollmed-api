@@ -2,7 +2,6 @@ package med.voll.api.paciente;
 
 import jakarta.persistence.*;
 import lombok.*;
-import med.voll.api.controller.DadosAtualizacaoPaciente;
 import med.voll.api.endereco.Endereco;
 
 @Getter
@@ -29,7 +28,10 @@ public class Paciente {
     @Embedded
     private Endereco endereco;
 
+    private boolean ativo;
+
     public Paciente(DadosCadastroPaciente dados) {
+        this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.cpf = dados.cpf();
