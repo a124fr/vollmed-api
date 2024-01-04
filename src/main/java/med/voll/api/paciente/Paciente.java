@@ -2,6 +2,7 @@ package med.voll.api.paciente;
 
 import jakarta.persistence.*;
 import lombok.*;
+import med.voll.api.controller.DadosAtualizacaoPaciente;
 import med.voll.api.endereco.Endereco;
 
 @Getter
@@ -34,5 +35,17 @@ public class Paciente {
         this.cpf = dados.cpf();
         this.telefone = dados.telefone();
         this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizar(DadosAtualizacaoPaciente dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+        }
+        if (dados.telefone() != null) {
+            this.telefone = dados.telefone();
+        }
+        if (dados.endereco() != null) {
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
     }
 }
